@@ -4,7 +4,7 @@
 
 ### App Details
 
-#### This project is a Todo app made with Flutter framework. It works hybrid (offline/anline)
+#### This project is a Todo app made with Flutter framework. It works hybrid (offline/online)
 
 *Only authentication need network. Other things works in offline.
 
