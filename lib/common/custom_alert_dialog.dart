@@ -15,7 +15,7 @@ customAlertDialog(BuildContext context,String title,desc,AlertType alertType,{Gl
           "OK",
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        onPressed: () => scaffoldKey==null?Navigator.pop(context):Navigator.pop(scaffoldKey!.currentContext!),
+        onPressed: () => scaffoldKey==null?Navigator.pop(context):Navigator.pop(scaffoldKey.currentContext!),
         width: 120,
       )
     ],
