@@ -1,16 +1,30 @@
-# eminyazan_todo_app
+## eminyazan_todo_app
 
-A new Flutter project.
+### This application created for Squamobi Software Company Interview by Muhammed Emin Yazan
 
-## Getting Started
+### App Details
 
-This project is a starting point for a Flutter application.
+#### This project is a Todo app made with Flutter framework. It works hybrid (offline/online)
 
-A few resources to get you started if this is your first Flutter project:
+*Only authentication need network. Other things works in offline.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+-I used Firebase Auth for authentication.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-I use GetX for state management.
+
+-I use Hive for local db 
+
+- There is two type generator one of them is for authenticated user (ex: MyUser class)
+other one is for Todo (ex: Todo class)
+
+-Also ı used a box for visiting onboarding screen if user visited onboarding information screen we prevent user visit it again and again...
+
+-Whole app's design belongs to me ı create it from Figma
+
+### You can download apk from here: https://drive.google.com/file/d/1C_QzkllHPvUyU7YQKhlAnQ0pRouh_7f-/view?usp=sharing
+
+### For your questions you can contact with me from eminyazan12@gmail.com
+
+
+
+
