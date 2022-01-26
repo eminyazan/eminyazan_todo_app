@@ -14,12 +14,21 @@ class TodoWidget extends StatelessWidget {
   final Todo todo;
   final int index;
   final Box<Todo> todoBox;
-  const TodoWidget({Key? key, required this.todo,required this.index,required this.todoBox}) : super(key: key);
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const TodoWidget({
+    Key? key,
+    required this.todo,
+    required this.index,
+    required this.todoBox,
+    required this.scaffoldKey,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
-    return  Padding(
+    Size size = MediaQuery.of(context).size;
+
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
         elevation: 10,
@@ -32,14 +41,18 @@ class TodoWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("TODO Type: ${todo.todoType}",style: todo
-                      .completed
-                      ? completedTextStyleBody()
-                      : boldTextStyleBody(),),
-                  Text("TODO Date: ${humanReadableDate(todo.date)}",style: todo
-                      .completed
-                      ? completedTextStyleBody()
-                      : boldTextStyleBody(),),
+                  Text(
+                    "TODO Type: ${todo.todoType}",
+                    style: todo.completed
+                        ? completedTextStyleBody()
+                        : boldTextStyleBody(),
+                  ),
+                  Text(
+                    "TODO Date: ${humanReadableDate(todo.date)}",
+                    style: todo.completed
+                        ? completedTextStyleBody()
+                        : boldTextStyleBody(),
+                  ),
                 ],
               ),
             ),
@@ -50,16 +63,13 @@ class TodoWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     backgroundColor:
-                    todo
-                        .completed
-                        ?Colors.black26:Colors.orangeAccent,
+                        todo.completed ? Colors.black26 : Colors.orangeAccent,
                     radius: size.width * 0.13,
                     child: CircleAvatar(
                       radius: size.width * 0.12,
                       backgroundImage: FileImage(
                         File(
-                          todo
-                              .imageUrl,
+                          todo.imageUrl,
                         ),
                       ),
                     ),
@@ -67,34 +77,28 @@ class TodoWidget extends StatelessWidget {
                 ),
                 //Title
                 Padding(
-                  padding:
-                  const EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Text(
-                    todo
-                        .title,
+                    todo.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: todo
-                        .completed
+                    style: todo.completed
                         ? completedTextStyleTitle()
                         : TextStyle(
-                      color: Colors.deepOrange,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      overflow:
-                      TextOverflow.ellipsis,
-                    ),
+                            color: Colors.deepOrange,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(
-                  14.0, 10, 14, 0),
+              padding: const EdgeInsets.fromLTRB(14.0, 10, 14, 0),
               child: Text(
                 todo.about,
-                style: todo
-                    .completed
+                style: todo.completed
                     ? completedTextStyleTitle()
                     : boldTextStyleTitle(),
               ),
@@ -104,38 +108,28 @@ class TodoWidget extends StatelessWidget {
             ),
             IntrinsicHeight(
               child: Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: IconButton(
                       onPressed: () async {
                         await todoBox.putAt(
                           index,
                           Todo(
-                            title: todo
-                                .title,
-                            about: todo
-                                .about,
-                            date: todo
-                                .date,
-                            todoType: todo
-                                .todoType,
-                            completed: todo
-                                .completed
-                                ? false
-                                : true,
-                            imageUrl: todo
-                                .imageUrl,
+                            title: todo.title,
+                            about: todo.about,
+                            date: todo.date,
+                            todoType: todo.todoType,
+                            completed: todo.completed ? false : true,
+                            imageUrl: todo.imageUrl,
                           ),
                         );
                       },
                       icon: Icon(
-                        todo
-                            .completed
-                            ?Icons.settings_backup_restore_rounded:Icons.done_rounded,
+                        todo.completed
+                            ? Icons.settings_backup_restore_rounded
+                            : Icons.done_rounded,
                         size: 33,
                         color: Colors.green.shade700,
                       ),
@@ -154,13 +148,15 @@ class TodoWidget extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: () async {
-                        await todoBox.deleteAt(index);
-                        await customAlertDialog(
-                          context,
-                          "A tip!",
-                          "Did you know you can delete your TODOs with swiping left or right\nIt was just an advice it can be more helpful 😎 ",
-                          AlertType.info,
-                        );
+                        await todoBox.deleteAt(index).then(
+                              (value) async => await customAlertDialog(
+                                context,
+                                "A tip!",
+                                "Did you know you can delete your TODOs with swiping left or right\nIt was just an advice it can be more helpful 😎 ",
+                                AlertType.info,
+                                scaffoldKey: scaffoldKey,
+                              ),
+                            );
                       },
                       icon: Icon(
                         Icons.delete,

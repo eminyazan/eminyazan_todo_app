@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-customAlertDialog(BuildContext context,String title,desc,AlertType alertType) async {
+customAlertDialog(BuildContext context,String title,desc,AlertType alertType,{GlobalKey<ScaffoldState>? scaffoldKey}) async {
   return  await Alert(
     context: context,
     type: alertType,
@@ -15,7 +15,7 @@ customAlertDialog(BuildContext context,String title,desc,AlertType alertType) as
           "OK",
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => scaffoldKey==null?Navigator.pop(context):Navigator.pop(scaffoldKey!.currentContext!),
         width: 120,
       )
     ],

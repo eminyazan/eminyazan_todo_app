@@ -20,11 +20,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
   final _todoBox = Hive.box<Todo>(TODO_BOX);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         title: Text("Your Todos"),
@@ -70,6 +72,7 @@ class _HomePageState extends State<HomePage> {
                                 todo: _todoBox.values.toList()[index],
                                 index: index,
                                 todoBox: _todoBox,
+                                scaffoldKey:_scaffoldKey,
                               ),
                             );
                           },
