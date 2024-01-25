@@ -1,6 +1,7 @@
-## eminyazan_todo_app
 
 ### App Details
+
+#### !!!Watch usage video from [here](https://www.linkedin.com/feed/update/urn:li:activity:6893797855585206272?utm_source=share&utm_medium=member_desktop)
 
 #### This project is a Todo app made with Flutter framework. It works hybrid (offline/online)
 
