@@ -1,7 +1,5 @@
 ## eminyazan_todo_app
 
-### This application created for Squamobi Software Company Interview by Muhammed Emin Yazan
-
 ### App Details
 
 #### This project is a Todo app made with Flutter framework. It works hybrid (offline/online)
@@ -21,7 +19,6 @@ other one is for Todo (ex: Todo class)
 
 -Whole app's design belongs to me ı create it from Figma
 
-### You can download apk from here: https://drive.google.com/file/d/1KwDQJKL6t3ufpZMxyO9srSgOA4LmqLFf/view?usp=sharing
 
 ### For your questions you can contact with me from eminyazan12@gmail.com
 
